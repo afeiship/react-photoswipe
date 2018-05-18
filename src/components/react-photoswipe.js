@@ -1,13 +1,19 @@
-import './style.scss';
-import classNames from 'classnames';
+import React,{PureComponent} from 'react';
 
-export default class extends React.Component{
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import noop from 'noop';
+import objectAssign from 'object-assign';
+
+export default class extends PureComponent{
+  /*===properties start===*/
   static propTypes = {
-    cssClass:React.PropTypes.string
+    className:PropTypes.string
   };
 
   static defaultProps = {
   };
+  /*===properties end===*/
 
   constructor(props) {
     super(props);
@@ -15,10 +21,9 @@ export default class extends React.Component{
   }
 
   render(){
+    const {className,...props} = this.props;
     return (
-      <div className={classNames('react-photoswipe',this.props.cssClass)}>
-        Hello React!
-      </div>
+      <div {...props} className={classNames('react-photoswipe',className)} />
     );
   }
 }
